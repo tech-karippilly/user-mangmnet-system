@@ -10,4 +10,6 @@ route.post(LOGIN,loginUser)
 route.get(SIGNUP,signupPage)
 route.post(SIGNUP,signupUser)
 
+
+
 export default route

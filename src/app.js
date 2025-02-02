@@ -8,7 +8,7 @@ dontenv.config()
 import { ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_REDIRECT } from "./constans/enpoints.js";
 
 import adminRoute from './routes/adminRoute.js'
-import userRoute from './routes/userRoute.js'
+import userAuthRoute from './routes/userAuthRoute.js'
 const app = express()
 
 const __filename = fileURLToPath(import.meta.url);
@@ -39,14 +39,16 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/',(req,res)=>{
+
+app.get('/auth',(req,res)=>{
     res.status(200).redirect(USER_REDIRECT)
 })
 app.get('/admin',(req,res)=>{
     res.status(200).redirect(ADMIN_REDIRECT)
 })
 
-app.use(AUTH_BASE,userRoute)
+app.use(AUTH_BASE,userAuthRoute)
 app.use(AUTH_BASE_ADMIN,adminRoute)
+
 
 export default app

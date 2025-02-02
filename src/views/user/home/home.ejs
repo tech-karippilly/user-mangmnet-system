@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="home container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="headbar container-fluid">
+                    <h2 class="myName"><!--Reji Jose--><%=user.name%></h2>
+                    <div class="buttons">
+                        <h5 class="home-button">Home</h5>
+                        <h5 class="contact-button">Contact</h5>
+                        <a href="/signout"><h5 class="signout-button">Signout</h5></a>
+                      </div>
+                </div>
+                <div class="info container">
+                    
+                    <p class="caption">Hi All, Dive into my Digital Space...</p>
+                    <h3 class="intro">Hello, I'm <!--Reji Jose--> <%=user.name%></h3>
+                    <h4 class="profile">IT Specialist - Developer - Web Designer</h4>
+                    <p class="description">
+                        Over the past few months, I have been diving into MERN full stack development, mastering essential skills in HTML, CSS, BootStrap, JavaScript, Node.Js. Each line of code is a step closer to my goal of becoming a proficient full stack Developer...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
+    
+</body>
+</html>
