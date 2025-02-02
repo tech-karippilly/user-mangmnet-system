@@ -11,7 +11,9 @@ export const ADMIN_DASHBOARD ='/dashboard'
 
 export const ADMIN_USERS = '/admin/users'
 
+
 export const BASE_URL ='/'
 export const LOGIN = '/login'
 export const SIGNUP = '/signup'
 export const LOGOUT = '/logout'
+export const SEARCH ='/search'

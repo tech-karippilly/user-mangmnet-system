@@ -222,8 +222,8 @@
     </div>
     <div class="main-content">
         <div class="topbar">
-            <form class="d-flex" action="/admin/search" method="POST" role="search">
-                <input class="form-control me-2" name="query" type="search" placeholder="Search"
+            <form class="d-flex" action="/admin/users/search" method="get" role="search">
+                <input class="form-control me-2" name="searchString" type="search" placeholder="Search"
                     aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -295,7 +295,7 @@
                     <ul class="pagination justify-content-center">
                         <% for(let i = 1; i <= totalPages; i++) { %>
                         <li class="page-item <%= (i === currentPage) ? 'active' : '' %>">
-                            <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                            <a class="page-link" href="/admin/users?page=<%= i %>"><%= i %></a>
                         </li>
                         <% } %>
                     </ul>
