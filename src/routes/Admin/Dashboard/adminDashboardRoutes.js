@@ -9,4 +9,5 @@ const route = express.Router();
 route.get(ADMIN_DASHBOARD,isAdminLoggedIn,dashboardPage)
 route.get(LOGOUT,adminLogout)
 
+
 export default route

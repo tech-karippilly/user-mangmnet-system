@@ -13,6 +13,8 @@ export const USER_BASE ='/'
 export const ADMIN_BASE='/admin'
 export const ADMIN_DASHBOARD ='/dashboard'
 
+export const ADMIN_USERS = '/admin/users'
+
 export const LOGIN = '/login'
 export const SIGNUP = '/signup'
 export const LOGOUT = '/logout'
