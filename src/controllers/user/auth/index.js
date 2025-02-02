@@ -26,7 +26,7 @@ export async function signupUser(req, res) {
         if (findUser) {
             return res.status(409).render(USER_SIGNUP_PAGE, { message: "A User with this email already exists", redirectUrl: '' })
         }
-        
+
         if (password !== confirmPassword) {
             return res.status(400).render(USER_SIGNUP_PAGE, { message: "Password do not match", redirectUrl: '' })
         }
@@ -34,7 +34,7 @@ export async function signupUser(req, res) {
             name: fullName,
             email: email,
             password,
-            isAdmin: true
+            isAdmin: false
         }
 
         const newUser = new User(userDetails)
