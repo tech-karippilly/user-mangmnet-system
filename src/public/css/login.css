@@ -1,0 +1,81 @@
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+  }
+  
+  /* Background Page design */
+  .background {
+    background-image: url('../images/login-background.jpg');   /* Background image for page */
+    background-size: cover;   /*the image covers the entire page */
+    background-position: center;   /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    height: 100vh; 
+    display: flex;  /* Enables flexbox for centering */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+  }
+  
+  /* Login box styling */
+  .login-container {
+    background: rgba(255, 255, 255, 0.8); /* background color*/
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    border: 1px solid #ccc; 
+  }
+  
+
+  /* Login Heading*/
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Input field styling */
+  .input-container {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #060606;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Button styling */
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-btn:hover {
+    background-color: #0056b3;
+  }
