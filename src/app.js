@@ -34,10 +34,10 @@ app.use(function (req, res, next) {
 });
 
 app.set('view engine', 'ejs');
-app.set('views', 'views')
+app.set('views', path.join(__dirname, 'views'))
 
 
-app.use('/public', express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/',(req,res)=>{
     res.status(200).redirect(USER_REDIRECT)
