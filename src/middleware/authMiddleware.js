@@ -4,8 +4,6 @@ export const isLoggedInUser = async (req, res, next) => {
     try {
         const userId = req.session.userId
         if (userId) {
-            const user = await User.findById(userId)
-            const redirectURl = user.isAdmin? '/admin/dashboard' : '/'
             return next()
         }
         return res.status(401).redirect('/auth')
@@ -33,8 +31,6 @@ export const isAdminLoggedIn = async(req,res,next)=>{
     try{
         const userId = req.session.admin.userId
         if (userId) {
-            const user = await User.findById(userId)
-            const redirectURl = user.isAdmin? '/admin/dashboard' : '/'
             return next()
         }
         return res.status(401).redirect('/admin')

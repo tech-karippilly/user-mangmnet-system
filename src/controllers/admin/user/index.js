@@ -77,13 +77,15 @@ export const createUser = async (req, res) => {
     }
 }
 
-export const blockUser = async (req, res) => { }
 
 export const updateUserPage = async (req,res) => {
     try{
         const id  = req.params.id;
+
         const user =  await User.findById(id)
+
         return res.status(200).render(ADMIN_UPDATE_USER_PAGE,{user,redirectUrl:''})
+
     }catch(error){
         return res.status(500).render(ADMIN_UPDATE_USER_PAGE,{message:"Internal server Error",user:{},redirectUrl:'/admin/users'})
     }
@@ -92,13 +94,14 @@ export const updateUserPage = async (req,res) => {
 export const updateUser = async (req,res) => { 
     try {
         const {email,name,id} =req.body
+
          await User.findByIdAndUpdate(
           { _id: id },
           { $set: { name: name, email: email } }
         );
+
         return res.status(200).render(ADMIN_UPDATE_USER_PAGE,{message:"Updated Successufully",user:{},redirectUrl:'/admin/users'})
       } catch (error) {
-
         return res.status(500).render(ADMIN_UPDATE_USER_PAGE,{message:"Internal Server Error",user:{},redirectUrl:'/admin/users'})
       }
 }
@@ -111,8 +114,10 @@ export const deleteUser = async (req, res) => {
 
         res.redirect("/admin/users");
     } catch (error) {
-        
         res.status(500).send("Internal Server Error");
 
     }
 }
+
+
+export const blockUser = async (req, res) => { }
