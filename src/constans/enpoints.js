@@ -10,7 +10,7 @@ export const ADMIN_BASE='/admin'
 export const ADMIN_DASHBOARD ='/dashboard'
 
 export const ADMIN_USERS = '/admin/users'
-
+export const ADMIN_CREATE_USER ='/createUser'
 
 export const BASE_URL ='/'
 export const LOGIN = '/login'

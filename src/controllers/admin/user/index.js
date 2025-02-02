@@ -1,4 +1,4 @@
-import { ADMIN_USER_PAGE } from "../../../constans/pages.js"
+import { ADMIN_CREATE_USER_PAGE, ADMIN_USER_PAGE } from "../../../constans/pages.js"
 import User from "../../../models/userSchema.js"
 
 
@@ -47,9 +47,35 @@ export const userPage = async (req, res) => {
     }
 }
 
-export const createUserPage = async () => { }
+export const createUserPage = async (req, res) => {
+    res.status(200).render(ADMIN_CREATE_USER_PAGE, { redirectUrl: '' })
+}
 
-export const createUser = async (req, res) => { }
+export const createUser = async (req, res) => {
+    try {
+        const {name,email,password} = req.body
+
+        const user = await User.findOne({email:email})
+        if (user){
+          return  res.status(409).render(ADMIN_CREATE_USER_PAGE, {message:"User Alerady exists", redirectUrl: '' })
+        }
+
+        const userDetails = {
+            name: name,
+            email: email,
+            password: password,
+            isAdmin: false,
+        };
+
+        const newUser = new User(userDetails)
+
+        await newUser.save()
+     return   res.status(200).render(ADMIN_CREATE_USER_PAGE, {message:"User Created Successfully ", redirectUrl: '/admin/users' })
+
+    } catch (error) {
+       return res.status(500).render(ADMIN_CREATE_USER_PAGE, {message:"Internal Serever Error", redirectUrl: '' })
+    }
+}
 
 export const blockUser = async (req, res) => { }
 
@@ -60,7 +86,7 @@ export const updateUser = async () => { }
 export const deleteUser = async (req, res) => {
     try {
         const id = req.params.id;
-        
+
         await User.deleteOne({ _id: id });
 
         res.redirect("/admin/users");
