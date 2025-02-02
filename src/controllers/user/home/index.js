@@ -10,3 +10,18 @@ export async function homePage (req,res){
       return  res.status(500).render(USER_HOME_PAGE,{user:{}})
     }
 }
+
+export const userLogout =async (req,res)=>{
+  try {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).send("Error signing out. Please try again.");
+      }
+    });
+    res.redirect("/");
+  } catch (error) {
+    if(!res.headersSent){
+      res.status(500).send('Internal Server Error');
+    }
+  }
+}
