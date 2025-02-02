@@ -7,7 +7,7 @@ dontenv.config()
 
 import { ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_BASE, USER_REDIRECT } from "./constans/enpoints.js";
 
-import adminRoute from './routes/adminRoute.js'
+import adminAuthRoute from './routes/Admin/Auth/adminAuthRoute.js'
 import userAuthRoute from './routes/User/Auth/userAuthRoute.js'
 import userHomeRoute from './routes/User/Home/homeRoutes.js'
 
@@ -52,7 +52,7 @@ app.get('/admin',(req,res)=>{
 app.use(AUTH_BASE,userAuthRoute)
 app.use(USER_BASE,userHomeRoute)
 
-app.use(AUTH_BASE_ADMIN,adminRoute)
+app.use(AUTH_BASE_ADMIN,adminAuthRoute)
 
 
 export default app

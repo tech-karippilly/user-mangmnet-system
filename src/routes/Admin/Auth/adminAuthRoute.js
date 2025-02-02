@@ -1,6 +1,6 @@
 import express from "express";
-import { LOGIN, SIGNUP } from "../constans/enpoints.js";
-import { adminLogin, adminLoginPage, adminSignupPage, adminSignupUser } from "../controllers/admin/auth/index.js";
+import { LOGIN, SIGNUP } from "../../../constans/enpoints.js";
+import { adminLogin, adminLoginPage, adminSignupPage, adminSignupUser } from "../../../controllers/admin/auth/index.js"
 
 const route = express.Router();
 
