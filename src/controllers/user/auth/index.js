@@ -2,6 +2,7 @@ import { AUTH_BASE, LOGIN } from "../../../constans/enpoints.js";
 import { USER_LOGIN_PAGE, USER_SIGNUP_PAGE } from "../../../constans/pages.js"
 
 import User from '../../../models/userSchema.js'
+import { checkSession } from "../../../utils/checkSessions.js";
 
 
 export async function loginPage(req, res) {
@@ -10,6 +11,10 @@ export async function loginPage(req, res) {
 
 export async function loginUser(req, res) {
     try {
+        const isSessionValid= checkSession(req.session,'user')
+        if (!isSessionValid.status){
+            return res.status(404).render(USER_LOGIN_PAGE, { message: 'Already Logged in',redirectUrl:'' })
+        }
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
         if (!user){

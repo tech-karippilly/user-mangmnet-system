@@ -1,5 +1,6 @@
 import { ADMIN_LOGIN_PAGE } from "../../../constans/pages.js"
 import User from "../../../models/userSchema.js";
+import { checkSession } from "../../../utils/checkSessions.js";
 
 export async function adminLoginPage(req,res){
     res.status(200).render(ADMIN_LOGIN_PAGE,{redirectUrl:''})
@@ -7,6 +8,10 @@ export async function adminLoginPage(req,res){
 
 export async function adminLogin(req,res){
     try{
+        const isSessionAvailable = checkSession(req.session,'admin')
+        if (!isSessionAvailable.status){
+            return res.status(400).render(ADMIN_LOGIN_PAGE,{message:"Already Logged In",redirectUrl:""})
+        }
         const {email,password} = req.body;
         const admin = await User.findOne({email});
 
@@ -32,7 +37,8 @@ export async function adminLogin(req,res){
          
 
     }catch(error){
-        return res.status(500).render(ADMIN_LOGIN_PAGE,{message:"Internal Server Error",redirectURL:""})
+        console.log(error.message)
+        return res.status(500).render(ADMIN_LOGIN_PAGE,{message:"Internal Server Error",redirectUrl:""})
     }
 }
 
