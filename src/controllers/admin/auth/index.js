@@ -37,7 +37,6 @@ export async function adminLogin(req,res){
          
 
     }catch(error){
-        console.log(error.message)
         return res.status(500).render(ADMIN_LOGIN_PAGE,{message:"Internal Server Error",redirectUrl:""})
     }
 }

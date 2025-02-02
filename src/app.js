@@ -5,10 +5,11 @@ import path from 'path';
 import dontenv from 'dotenv'
 dontenv.config()
 
-import { ADMIN_BASE, ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_BASE, USER_REDIRECT } from "./constans/enpoints.js";
+import { ADMIN_BASE, ADMIN_REDIRECT, ADMIN_USERS, AUTH_BASE, AUTH_BASE_ADMIN, BASE_URL, USER_REDIRECT } from "./constans/enpoints.js";
 
 import adminAuthRoute from './routes/Admin/Auth/adminAuthRoute.js'
 import adminDashboardRoute from './routes/Admin/Dashboard/adminDashboardRoutes.js'
+import adminUserRoute from './routes/Admin/User/index.js'
 import userAuthRoute from './routes/User/Auth/userAuthRoute.js'
 import userHomeRoute from './routes/User/Home/homeRoutes.js'
 
@@ -52,10 +53,10 @@ app.get('/admin',(req,res)=>{
 })
 
 app.use(AUTH_BASE,userAuthRoute)
-app.use(USER_BASE,userHomeRoute)
+app.use(BASE_URL,userHomeRoute)
 
 app.use(AUTH_BASE_ADMIN,adminAuthRoute)
 app.use(ADMIN_BASE,adminDashboardRoute)
-
+app.use(ADMIN_USERS,adminUserRoute)
 
 export default app

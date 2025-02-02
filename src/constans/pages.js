@@ -3,4 +3,8 @@ export const USER_SIGNUP_PAGE = 'user/auth/signup'
 
 export const USER_HOME_PAGE = 'user/home/home'
 
-export const ADMIN_LOGIN_PAGE = 'admin/auth/adminLogin.ejs'
+export const ADMIN_LOGIN_PAGE = 'admin/auth/adminLogin'
+export const ADMIN_DASHBOARD = 'admin/dashboard/index'
+export const ADMIN_USER_PAGE = 'admin/users/index'
+export const ADMIN_CREATE_USER_PAGE = 'admin/users/createUser'
+export const ADMIN_UPDATE_USER_PAGE = 'admin/users/editUser'

@@ -11,13 +11,6 @@ const userSchema = mongoose.Schema({
         required : true,
         unique: true
     },
-    /*phone: {
-        type: String,
-        reuired : false,
-        unique: true,
-        sparse : true,
-        default : null,
-    },*/
     googleId : {
         type:String,
         unique: false
@@ -35,10 +28,6 @@ const userSchema = mongoose.Schema({
         type:Boolean,
         default: false
     },
-    // createdOn:{
-    //     type:Date,
-    //     default:Date.now()
-    // }
 },
 {
     timestamps:true
