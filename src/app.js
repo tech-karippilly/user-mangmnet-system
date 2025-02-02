@@ -5,10 +5,12 @@ import path from 'path';
 import dontenv from 'dotenv'
 dontenv.config()
 
-import { ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_REDIRECT } from "./constans/enpoints.js";
+import { ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_BASE, USER_REDIRECT } from "./constans/enpoints.js";
 
 import adminRoute from './routes/adminRoute.js'
-import userAuthRoute from './routes/userAuthRoute.js'
+import userAuthRoute from './routes/User/Auth/userAuthRoute.js'
+import userHomeRoute from './routes/User/Home/homeRoutes.js'
+
 const app = express()
 
 const __filename = fileURLToPath(import.meta.url);
@@ -48,6 +50,8 @@ app.get('/admin',(req,res)=>{
 })
 
 app.use(AUTH_BASE,userAuthRoute)
+app.use(USER_BASE,userHomeRoute)
+
 app.use(AUTH_BASE_ADMIN,adminRoute)
 
 

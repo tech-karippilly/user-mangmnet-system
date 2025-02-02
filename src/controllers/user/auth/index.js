@@ -13,20 +13,20 @@ export async function loginUser(req, res) {
         const { email, password } = req.body;
         const user = await User.findOne({ email: email });
         if (!user){
-            return res.status(404).render(USER_LOGIN_PAGE, { message: 'User Not Found' })
+            return res.status(404).render(USER_LOGIN_PAGE, { message: 'User Not Found',redirectUrl:'' })
         }
         const passwordMatch = await user.comparePassword(password)
         if (!passwordMatch) {
-            return res.status(400).render(USER_LOGIN_PAGE, { message: 'Invalid email or password' })
+            return res.status(400).render(USER_LOGIN_PAGE, { message: 'Invalid email or password' ,redirectUrl:''})
         }
         req.session.userId = user._id;
         if (req.session.userId){
-            return res.status(200).render(USER_LOGIN_PAGE,{message: 'Login Successfully '});
+            return res.status(200).render(USER_LOGIN_PAGE,{message: 'Login Successfully ',redirectUrl:'/'});
         }
-        return res.status(400).render(USER_LOGIN_PAGE,{message: 'Login Faild Please try again later'});
+        return res.status(400).render(USER_LOGIN_PAGE,{message: 'Login Faild Please try again later',redirectUrl:''});
 
     } catch (error) {
-        return res.status(500).render(USER_LOGIN_PAGE,{message: 'Internal Server Error'});
+        return res.status(500).render(USER_LOGIN_PAGE,{message: 'Internal Server Error',redirectUrl:''});
     }
 }
 
