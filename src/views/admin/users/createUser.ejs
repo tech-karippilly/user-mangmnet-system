@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-primary">Add New User</h1>
+        <% if(typeof message!== 'undefined'){ %>
+            <p style="color:green"><%=message%></p>
+        <% } %>
+
+        <form id="createUser" action="/admin/users/createUser" method="POST">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="name" placeholder="Enter Full Name">
+                <div id="nameError" class="error-message" style="color:red"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+                <div id="emailError" class="error-message" style="color:red"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                <div id="passError" class="error-message" style="color:red"></div>
+            </div>
+            <div class="form-group">      <!--Input Section for Password-->
+                <label for="confirm password">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" name = "confirmPassword">
+                <div id="cPassError" class="error-message" style="color:red"></div>
+              </div>
+            <% if(locals.message && message.length>0){ %>
+                <div class="alert alert-danger text-center">
+                    <%= message %>
+                </div>
+            <% } %>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
+        <a href="/admin/users">Go Back</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script>
+    const nameId = document.getElementById('fullName');
+    const emailId = document.getElementById('email');
+    const passId = document.getElementById('password');
+    const cpassId = document.getElementById('confirmPassword');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passError = document.getElementById('passError');
+    const cPassError = document.getElementById('cPassError')
+
+
+    const createUser = document.getElementById('createUser');
+
+    // Function to show or hide errors
+    function showError(element, message, status) {
+        element.style.display = status ? 'block' : 'none';
+        element.innerText = status ? message : '';
+    }
+
+    function nameValidation() {
+        const nameVal = nameId.value.trim();
+        const namePattern = /^[A-Za-z\s]+$/;
+
+        if (nameVal === "") {
+            showError(nameError, 'Name field cannot be empty...', true);
+            return false;
+        } else if (!namePattern.test(nameVal)) {
+            showError(nameError, 'Name can contain only alphabets and spaces', true);
+            return false;
+        } else {
+            showError(nameError, '', false);
+            return true;
+        }
+    }
+
+    function emailValidation() {
+        const emailVal = emailId.value.trim();
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        if (!emailPattern.test(emailVal)) {
+            showError(emailError, 'Invalid email format', true);
+            return false;
+        } else {
+            showError(emailError, '', false);
+            return true;
+        }
+    }
+
+    function passValidation() {
+        const passVal = passId.value.trim();
+        const cpassVal = cpassId.value.trim();
+        const alpha = /[a-zA-Z]/;
+        const digit = /\d/;
+
+        if (passVal.length < 8) {
+            showError(passError, 'Password should contain at least 8 characters', true);
+            return false;
+        } else if (!alpha.test(passVal) || !digit.test(passVal)) {
+            showError(passError, 'Password should contain both letters and numbers', true);
+            return false;
+        } else {
+            showError(passError, '', false);
+        }
+
+        if (passVal !== cpassVal) {
+            showError(cPassError, 'Passwords do not match', true);
+            return false;
+        } else {
+            showError(cPassError, '', false);
+            return true;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        createUser.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const isNameValid = nameValidation();
+            const isEmailValid = emailValidation();
+            const isPasswordValid = passValidation();
+
+            if (isNameValid && isEmailValid && isPasswordValid) {
+                // alert('Form submitted successfully!');
+                createUser.submit(); // Let the form submit
+            }
+        });
+    });
+
+    const redirectUrl = "<%= redirectUrl %>";
+        if (redirectUrl && redirectUrl.trim() !== "") {
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000)
+
+        }
+    </script>
+</body>
+</html>
