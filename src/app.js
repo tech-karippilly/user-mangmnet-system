@@ -2,7 +2,13 @@ import express from "express";
 import session from 'express-session'
 import { fileURLToPath } from 'url';
 import path from 'path';
+import dontenv from 'dotenv'
+dontenv.config()
 
+import { ADMIN_REDIRECT, AUTH_BASE, AUTH_BASE_ADMIN, USER_REDIRECT } from "./constans/enpoints.js";
+
+import adminRoute from './routes/adminRoute.js'
+import userRoute from './routes/userRoute.js'
 const app = express()
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,5 +38,15 @@ app.set('views', 'views')
 
 
 app.use('/public', express.static('public'));
+
+app.get('/',(req,res)=>{
+    res.status(200).redirect(USER_REDIRECT)
+})
+app.get('/admin',(req,res)=>{
+    res.status(200).redirect(ADMIN_REDIRECT)
+})
+
+app.use(AUTH_BASE,userRoute)
+app.use(AUTH_BASE_ADMIN,adminRoute)
 
 export default app
