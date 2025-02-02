@@ -111,7 +111,13 @@
         }
     });
 });
+const redirectUrl = "<%= redirectUrl %>";
+        if (redirectUrl && redirectUrl.trim() !== "") {
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000)
 
+        }
 </script>
 </body>
 </html>

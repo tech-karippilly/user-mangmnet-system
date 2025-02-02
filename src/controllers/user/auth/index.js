@@ -5,7 +5,7 @@ import User from '../../../models/userSchema.js'
 
 
 export async function loginPage(req, res) {
-    res.status(200).render(USER_LOGIN_PAGE)
+    res.status(200).render(USER_LOGIN_PAGE,{redirectUrl:''})
 }
 
 export async function loginUser(req, res) {

@@ -8,8 +8,8 @@ const route = express.Router();
 route.get(LOGIN,preventLoginPageUser,loginPage)
 route.post(LOGIN,preventLoginPageUser,loginUser)
 
-route.get(SIGNUP,signupPage)
-route.post(SIGNUP,signupUser)
+route.get(SIGNUP,preventLoginPageUser,signupPage)
+route.post(SIGNUP,preventLoginPageUser,signupUser)
 
 
 
